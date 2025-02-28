@@ -1,8 +1,25 @@
-#pragma once
+#ifndef UI_H
+#define UI_H
+
 #include "imgui.h"
 #include "imgui_internal.h"
-#include "imgui_impl_dx9.h"
 #include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
+#include <d3d11.h>
+#include <Windows.h>
+#include "MacroSystem.h"
+
+// DirectX 11 related globals
+extern ID3D11Device* g_pd3dDevice;
+extern ID3D11DeviceContext* g_pd3dDeviceContext;
+extern IDXGISwapChain* g_pSwapChain;
+extern ID3D11RenderTargetView* g_mainRenderTargetView;
+
+// Forward declarations for DX11 helper functions
+bool CreateDeviceD3D(HWND hWnd);
+void CleanupDeviceD3D();
+void CreateRenderTarget();
+void CleanupRenderTarget();
 
 enum FovShape {
     FOV_CIRCLE,
@@ -34,7 +51,7 @@ struct UIState {
     bool active = false;
     bool showFov = false;
     int aimPartcombo = 0;
-    int aimKeybindcombo = 0;
+    int aimKey = 0;
     float smoothing = 2.0f;
     int comboModelcombobox = 0;
     float aimSpeed = 50.0f;
@@ -89,8 +106,8 @@ struct UIState {
     bool quickPeekRepeat = false;
     bool dropShotEnabled = false;
     int dropShotKey = 0;
-    bool quickLeanEnabled = false;
-    int quickLeanKey = 0;
+    bool diffuseEnabled = false;
+    int diffuseKey = 0;
     float macroSpeed = 1.0f;
 
     // User related state
@@ -113,6 +130,7 @@ struct UIState {
 };
 
 extern UIState state;
+extern MacroSystem g_macroSystem;
 
 namespace fonts {
     extern ImFont* medium;
@@ -122,4 +140,10 @@ namespace fonts {
 
 void InitializeUI();
 void RenderUI(bool& done);
-void CleanupUI(); 
+void CleanupUI();
+
+extern const char* triggerKeys[];
+extern const char* macroKeys[];
+extern const char* triggerModes[];
+
+#endif // UI_H 

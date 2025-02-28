@@ -1,0 +1,24 @@
+**Instructions to Convert a .bat File to .exe with Custom Icon**
+
+1. **Download and Install Bat To Exe Converter**  
+   - Use the following link to download:  
+     [Bat To Exe Converter - MajorGeeks](https://www.majorgeeks.com/mg/getmirror/bat_to_exe_converter,1.html)
+
+2. **Convert the Batch File**  
+   - Open **Bat To Exe Converter**.  
+   - Select the file **GamerFun.bat** for conversion.  
+   - Check the **"Icon"** option and choose the file **icon.ico** as your custom icon.  
+   - Click the **"Convert"** button.
+
+3. **Save the Executable**  
+   - Name the output file as **GamerFun.exe**.  
+
+4. **Cleanup**  
+   - Delete the original **GamerFun.bat** file.  
+
+5. **Final Step**  
+   - Upload the new files.  
+
+---
+
+**Thank you for your time!**
