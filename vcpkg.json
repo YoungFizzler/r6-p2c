@@ -1,0 +1,8 @@
+{
+    "name": "starlit-r6",
+    "version": "1.0.0",
+    "dependencies": [
+        "onnxruntime"
+    ],
+    "builtin-baseline": "2024.02.14"
+} 

@@ -4,9 +4,6 @@
 #include <tchar.h>
 #include "d3d.h"
 #include "ui.h"
-#include "ai.h"
-
-std::unique_ptr<AIModel> g_aiModel;
 
 int main(int, char**) {
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("ImGui Example"), NULL };
@@ -30,12 +27,6 @@ int main(int, char**) {
     ImGui_ImplDX9_Init(g_pd3dDevice);
 
     InitializeUI();
-
-    g_aiModel = std::make_unique<AIModel>();
-    if (!g_aiModel->initialize("model/r6.onnx", InferenceBackend::ONNX_DML)) {
-        MessageBox(NULL, L"Failed to initialize AI model", L"Error", MB_OK | MB_ICONERROR);
-        return 1;
-    }
 
     ImVec4 clear_color = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
     bool done = false;
@@ -75,7 +66,6 @@ int main(int, char**) {
     }
 
     CleanupUI();
-    g_aiModel.reset();
     CleanupDeviceD3D();
     ::DestroyWindow(hwnd);
     ::UnregisterClass(wc.lpszClassName, wc.hInstance);
